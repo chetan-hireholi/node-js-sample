@@ -1,13 +1,12 @@
-FROM node:10
-ENV NODE_ENV=integration
+FROM node:10-slim
 
 WORKDIR /app
 
 COPY ["package.json", "package-lock.json*", "./"]
 
-RUN npm install --integration
+RUN npm install
 
 COPY . .
 
-EXPOSE 5000
-CMD ["node","index.js"]
+ENTRYPOINT ["node","index.js"]
+EXPOSE 5000/tcp
